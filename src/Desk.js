@@ -2,7 +2,7 @@ import Inferno from 'inferno'
 import {Link} from 'inferno-router'
 
 const Desk = (props) => {
-    console.log(props)
+
     const icons = [
         {
             icon: 'calendar',
@@ -21,8 +21,6 @@ const Desk = (props) => {
             route: "Modules"
         }
     ]
-
-    // const handleRoute = (r) => history.push(r);
 
     return (
         <div class="desk-container">

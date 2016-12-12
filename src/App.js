@@ -5,10 +5,13 @@ import { Router, Route } from 'inferno-router'
 
 import Navbar from './partials/Navbar'
 import Desk from './Desk'
-import ToDo from './ToDo'
+import { TodoList, TodoItem } from './ToDo'
+
+import ListView from './ListView'
+import FormView from './FormView'
+
 
 const history = createHistory();
-console.log(history)
 
 class App extends Component {
     constructor (props) {
@@ -32,8 +35,13 @@ class App extends Component {
 Inferno.render((
     <Router history={history}>
         <Route path="/" component={App}>
-            <Route path="desk" component={Desk}/>
-            <Route path="List/ToDo" component={ToDo}/>
+            <Route path="/desk" component={Desk}/>
+            <Route path="/List" component={ListView}>
+                <Route path="/ToDo" component={TodoList}/>
+            </Route>
+            <Route path="/Form" component={FormView}>
+                <Route path="/ToDo/:id" component={TodoItem}/>
+            </Route>
         </Route>
     </Router>),
     document.querySelector('#app'));

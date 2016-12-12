@@ -1,21 +1,46 @@
 import Inferno from 'inferno'
-import {Link} from 'inferno-router'
+import { Link } from 'inferno-router'
 
-const ToDo = (props) => {
-    const todos = ["Test", "hello woelds", "tesin lorem"]
+const todos = [
+    {id: 1, content: "Test"},
+    {id: 2, content: "hello woelds"},
+    {id: 3, content: "tesin lorem"}
+]
+
+const get_todo = (id) => todos.filter(t => t.id === id)[0];
+
+export const TodoList = (props) => {
 
     return (
-        <div class="container-fluid list-view">
-            <div class="col col-sm-3 sidebar"></div>
-            <div class="col col-sm-9 main-content">
-                <ul class="list-group">
-                {
-                    todos.map(t => <li class="list-group-item">{t}</li>)
-                }
-                </ul>
-            </div>
+        <div class="todo-container">
+            <h3>ToDo</h3>
+            <ul class="list-items">
+            {
+                todos.map(t =>
+                    <li class="list-item">
+                        <Link to={"/Form/ToDo/"+t.id}>
+                            {t.content}
+                        </Link>
+                    </li>
+                )
+            }
+            </ul>
         </div>
     )
 }
 
-export default ToDo;
+export const TodoItem = ({params}) => {
+    
+    const todo = get_todo(params.id);
+    console.log(todo)
+    return (
+        <div class="form-todo">
+            <div class="todo-item">
+                {todo.content}
+                {
+                    
+                }
+            </div>
+        </div>
+    )
+}
